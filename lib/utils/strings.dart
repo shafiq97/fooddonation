@@ -57,5 +57,5 @@ class FeedFoodStrings {
       "Make a difference in people's lives with just one tap.";
 
   // Pages
-  static const BrandName = "Food Donation";
+  static const BrandName = "GIVE'M";
 }
