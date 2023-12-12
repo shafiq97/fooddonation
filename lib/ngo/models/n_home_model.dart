@@ -78,17 +78,17 @@ class NgoFoodRequestModel {
 
   factory NgoFoodRequestModel.fromMap(Map<String, dynamic> map) {
     return NgoFoodRequestModel(
-      map['id'] ?? '', // Providing a default empty string if null
-      map['SenderAccountNo'] ?? '',
-      map['FoodDetails'] ?? '',
-      map['FoodQuantity'] ?? '',
-      map['CookingTime'] ?? '',
-      map['Address'] ?? '',
-      map['ZipCode'] ?? '',
-      map['Status'] ?? '',
-      map['CurrentTime'] ?? '',
-      map['longitude'] ?? '',
-      map['latitude'] ?? '',
+      map['id'] as String,
+      map['SenderAccountNo'] as String,
+      map['FoodDetails'] as String,
+      map['FoodQuantity'] as String,
+      map['CookingTime'] as String,
+      map['Address'] as String,
+      map['ZipCode'] as String,
+      map['Status'] as String,
+      map['CurrentTime'] as String,
+      map['longitude'] as String,
+      map['latitude'] as String,
     );
   }
 

@@ -47,10 +47,6 @@ class _nPendingRequestState extends State<nPendingRequest> {
           setState(() {
             foodData = true;
           });
-          NgoFoodRequest.requestList = List.from(productsData)
-              .map<NgoFoodRequestModel>(
-                  (item) => NgoFoodRequestModel.fromMap(item))
-              .toList();
         }
       } else {
         // If the response was not successful, throw an error
@@ -69,9 +65,9 @@ class _nPendingRequestState extends State<nPendingRequest> {
         elevation: 1,
         title: Container(
           alignment: Alignment.centerLeft,
-          child: Column(
+          child: const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
+            children: [
               Text(
                 "Pending",
                 style: TextStyle(

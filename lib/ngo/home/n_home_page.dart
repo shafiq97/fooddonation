@@ -20,8 +20,8 @@ class _NHomePageState extends State<NHomePage> {
   String? newStat = "";
   String? pendingStat = "";
   String? completedStat = "";
-  bool foodlist = true;
-  bool foodData = false;
+  List<dynamic> foodRequests = []; // Store the JSON data directly
+
   @override
   void initState() {
     // TODO: implement initState
@@ -48,9 +48,7 @@ class _NHomePageState extends State<NHomePage> {
       } else {
         // If the response was not successful, throw an error
       }
-    } catch (e) {
-      print(e);
-    }
+    } catch (e) {}
 
     try {
       // Make a GET request to the API endpoint
@@ -62,27 +60,11 @@ class _NHomePageState extends State<NHomePage> {
         // Return the list of articles from the API
         var productsData = data['request'];
 
-        if (productsData == false) {
+        if (productsData != false) {
           setState(() {
-            foodlist = false;
+            foodRequests = productsData;
           });
-        } else {
-          setState(() {
-            foodData = true;
-          });
-          try {
-            NgoFoodRequest.requestList = List.from(productsData)
-                .map<NgoFoodRequestModel>(
-                    (item) => NgoFoodRequestModel.fromMap(item))
-                .toList();
-          } catch (e) {
-            // Handle the error here
-            print('An error occurred: $e');
-            // Depending on your app's needs, you might want to set some state or show a message to the user.
-          }
-
-          print(NgoFoodRequest.requestList);
-        }
+        } else {}
       } else {
         // If the response was not successful, throw an error
       }
@@ -187,27 +169,45 @@ class _NHomePageState extends State<NHomePage> {
                     const SizedBox(
                       height: 20,
                     ),
-                    foodlist == true && foodData == false
-                        ? const Center(
+                    // create card listview.builder here
+                    foodRequests.isEmpty
+                        ? Center(
                             child: CircularProgressIndicator(),
                           )
-                        : foodlist == false
-                            ? const SizedBox(
-                                height: 300,
-                                child: Center(
-                                  child: Text("No food donated"),
+                        : ListView.builder(
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            itemCount: foodRequests.length,
+                            itemBuilder: ((context, index) {
+                              var foodRequest = foodRequests[index];
+                              return Container(
+                                margin: EdgeInsets.symmetric(vertical: 10.0),
+                                padding: EdgeInsets.all(10.0),
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.grey),
+                                  borderRadius: BorderRadius.circular(10.0),
                                 ),
-                              )
-                            : ListView.builder(
-                                shrinkWrap: true,
-                                physics: const NeverScrollableScrollPhysics(),
-                                itemCount: NgoFoodRequest.requestList.length,
-                                itemBuilder: ((context, index) {
-                                  return NRequestCards(
-                                      foodRequest:
-                                          NgoFoodRequest.requestList[index]);
-                                }),
-                              ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "ID: ${foodRequest['id']}",
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
+                                        "Food Details: ${foodRequest['food_details']}"),
+                                    Text(
+                                        "Food Quantity: ${foodRequest['food_quantity']}"),
+                                    Text(
+                                        "Cooking Time: ${foodRequest['cooking_time']}"),
+                                    // Add more fields as needed
+                                  ],
+                                ),
+                              );
+                            }),
+                          ),
                   ],
                 ),
               ),

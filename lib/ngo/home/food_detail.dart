@@ -1,6 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-//Author : Prachi Nathjogi
-
 import 'dart:convert';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
@@ -151,9 +148,9 @@ class _NFoodDetailState extends State<NFoodDetail> {
               elevation: 1,
               title: Container(
                 alignment: Alignment.centerLeft,
-                child: Column(
+                child: const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children: [
                     Text(
                       "Food Detail",
                       style: TextStyle(
