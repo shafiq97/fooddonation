@@ -11,6 +11,7 @@ class FeedFoodStrings {
   static const register_url_volunteer = "$url/app/authentication/register.php";
 
   static const register_url_ngo = "$url/app/authentication/register_ngo.php";
+  static const dropdown = "$url/app/package_dropdown.php";
 
   static const register_vaildate_url =
       "$url/app/authentication/user_email_check.php";

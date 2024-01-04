@@ -159,6 +159,25 @@ class _LoginPageState extends State<LoginPage> {
           // ignore: use_build_context_synchronously
           Navigator.pushNamedAndRemoveUntil(
               context, FeedFoodRoutes().vMainRoute, (r) => false);
+        }
+        if (response['success'] == true && response['type'] == 'admin') {
+          final SharedPreferences sharedPreferences =
+              await SharedPreferences.getInstance();
+          // print(response['username']);
+          sharedPreferences.setString("accountNo", response['accountNo']);
+          sharedPreferences.setString("type", response['type']);
+          sharedPreferences.setString("username", response['username']);
+
+          // Setting Globals
+          UserUsername = response['username'];
+          UserAccountNo = response['accountNo'];
+          UserType = response['type'];
+
+          // ignore: use_build_context_synchronously
+          Navigator.of(context).pop();
+          // ignore: use_build_context_synchronously
+          Navigator.pushNamedAndRemoveUntil(
+              context, FeedFoodRoutes().aMainRoute, (r) => false);
         } else if (response['success'] == true && response['type'] == 'ngo') {
           final SharedPreferences sharedPreferences =
               await SharedPreferences.getInstance();
