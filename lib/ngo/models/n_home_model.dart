@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: public_member_api_docs, sort_constructors_first, non_constant_identifier_names
 import 'dart:convert';
 
 // History Page
@@ -18,6 +18,7 @@ class NgoFoodRequestModel {
   final String CurrentTime;
   final String longitude;
   final String latitude;
+  final String donationId;
 
   NgoFoodRequestModel(
       this.id,
@@ -30,7 +31,8 @@ class NgoFoodRequestModel {
       this.Status,
       this.CurrentTime,
       this.longitude,
-      this.latitude);
+      this.latitude,
+      this.donationId);
 
   NgoFoodRequestModel copyWith({
     String? id,
@@ -44,6 +46,7 @@ class NgoFoodRequestModel {
     String? CurrentTime,
     String? longitude,
     String? latitude,
+    String? donationId,
   }) {
     return NgoFoodRequestModel(
       id ?? this.id,
@@ -57,6 +60,7 @@ class NgoFoodRequestModel {
       CurrentTime ?? this.CurrentTime,
       longitude ?? this.longitude,
       latitude ?? this.latitude,
+      donationId ?? this.donationId,
     );
   }
 
@@ -73,6 +77,7 @@ class NgoFoodRequestModel {
       'CurrentTime': CurrentTime,
       'longitude': longitude,
       'latitude': latitude,
+      'donationId': donationId,
     };
   }
 
@@ -90,6 +95,7 @@ class NgoFoodRequestModel {
           '', // Assuming 'CurrentTime' corresponds to 'created_at'
       map['longitude'] ?? '',
       map['latitude'] ?? '',
+      map['donationId'].toString(),
     );
   }
 
@@ -100,7 +106,7 @@ class NgoFoodRequestModel {
 
   @override
   String toString() {
-    return 'NgoFoodRequestModel(id: $id, SenderAccountNo: $SenderAccountNo, FoodDetails: $FoodDetails, FoodQuantity: $FoodQuantity, CookingTime: $CookingTime, Address: $Address, ZipCode: $ZipCode, Status: $Status, CurrentTime: $CurrentTime, longitude: $longitude, latitude: $latitude)';
+    return 'NgoFoodRequestModel(id: $id, SenderAccountNo: $SenderAccountNo, FoodDetails: $FoodDetails, FoodQuantity: $FoodQuantity, CookingTime: $CookingTime, Address: $Address, ZipCode: $ZipCode, Status: $Status, CurrentTime: $CurrentTime, longitude: $longitude, latitude: $latitude, donationId: $donationId)';
   }
 
   @override
@@ -117,7 +123,8 @@ class NgoFoodRequestModel {
         other.Status == Status &&
         other.CurrentTime == CurrentTime &&
         other.longitude == longitude &&
-        other.latitude == latitude;
+        other.latitude == latitude &&
+        other.donationId == donationId;
   }
 
   @override
@@ -132,6 +139,7 @@ class NgoFoodRequestModel {
         Status.hashCode ^
         CurrentTime.hashCode ^
         longitude.hashCode ^
-        latitude.hashCode;
+        latitude.hashCode ^
+        donationId.hashCode;
   }
 }

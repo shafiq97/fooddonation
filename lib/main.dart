@@ -84,7 +84,8 @@ class MyApp extends StatelessWidget {
           color: Color.fromARGB(255, 250, 250, 250),
           foregroundColor: Colors.black,
         ),
-        primarySwatch: Colors.deepPurple,
+        primaryColor:
+            const Color(0xFF0B6D3E), // Use Color for a specific hex color
         fontFamily: GoogleFonts.poppins().fontFamily,
       ),
       initialRoute: initialRoute,
@@ -104,7 +105,7 @@ class MyApp extends StatelessWidget {
         FeedFoodRoutes().vMainRoute: (context) => const VMainPage(),
         FeedFoodRoutes().nMainRoute: (context) => const NMain(),
         FeedFoodRoutes().vHistory: (context) => const VHistory(),
-        FeedFoodRoutes().vEditProfile: (context) => VEditProfile(),
+        FeedFoodRoutes().vEditProfile: (context) => const VEditProfile(),
       },
     );
   }

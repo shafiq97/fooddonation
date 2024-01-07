@@ -23,9 +23,9 @@ class WelcomePage extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
                   alignment: Alignment.topLeft,
-                  child: Column(
+                  child: const Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
+                    children: [
                       Text(
                         "Welcome",
                         style: TextStyle(
@@ -51,9 +51,9 @@ class WelcomePage extends StatelessWidget {
                       fit: BoxFit.contain),
                 ),
                 height: 350,
-                child: Padding(
-                  padding: const EdgeInsets.all(200.0),
-                  child: Column(children: const []),
+                child: const Padding(
+                  padding: EdgeInsets.all(200.0),
+                  child: Column(children: []),
                 ),
               ),
               Container(
@@ -74,13 +74,16 @@ class WelcomePage extends StatelessWidget {
                           onPressed: (() => Navigator.pushNamed(
                               context, FeedFoodRoutes().loginRoute)),
                           style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.deepPurple[900],
+                              backgroundColor: const Color(0xFF0B6D3E),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
                               )),
                           child: const Text(
                             "Sign In",
-                            style: TextStyle(fontSize: 24),
+                            style: TextStyle(
+                              fontSize: 24,
+                              color: Colors.white, // Set the color to white
+                            ),
                           ),
                         ),
                       ),

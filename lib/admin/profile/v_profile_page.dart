@@ -209,7 +209,7 @@ class _AProfilePageState extends State<AProfilePage> {
                                             75, 75, 0, 0),
                                         child: Container(
                                           decoration: BoxDecoration(
-                                            color: Colors.deepPurple,
+                                            color: Color(0xFF0B6D3E),
                                             borderRadius:
                                                 BorderRadius.circular(40),
                                           ),

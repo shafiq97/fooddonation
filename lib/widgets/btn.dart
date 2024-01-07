@@ -35,7 +35,7 @@ class Btn {
           child: Text(
             "register here",
             style: TextStyle(
-              color: Colors.deepPurple[400],
+              color: Color(0xFF0B6D3E),
               decoration: TextDecoration.underline,
             ),
           ),
@@ -57,7 +57,7 @@ class Btn {
           child: Text(
             "login here",
             style: TextStyle(
-              color: Colors.deepPurple[400],
+              color: Color(0xFF0B6D3E),
               decoration: TextDecoration.underline,
             ),
           ),
@@ -95,7 +95,7 @@ class Btn {
     return InkWell(
       onTap: (() => print(url)),
       child: Container(
-        color: Colors.deepPurple[100],
+        color: Color(0xFF0B6D3E),
         child: Card(
           child: Column(children: [
             Image.network(

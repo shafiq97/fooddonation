@@ -51,7 +51,7 @@ class _VDonatePageState extends State<VDonatePage> {
           leading: IconButton(
             onPressed: (() {
               Navigator.pushReplacementNamed(
-                  context, FeedFoodRoutes().vMainRoute);
+                  context, FeedFoodRoutes().nMainRoute);
             }),
             icon: const Icon(Icons.close),
           ),
@@ -65,7 +65,7 @@ class _VDonatePageState extends State<VDonatePage> {
                   child: const Text(
                     "Post",
                     style: TextStyle(
-                        color: Colors.deepPurple, fontWeight: FontWeight.w600),
+                        color: Color(0xFF0B6D3E), fontWeight: FontWeight.w600),
                   ),
                 )
               ],
@@ -243,7 +243,7 @@ class _VDonatePageState extends State<VDonatePage> {
                           await postRequest(context);
                         }),
                         style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.deepPurple[400],
+                            backgroundColor: Color(0xFF0B6D3E),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5),
                             )),

@@ -5,8 +5,10 @@
 
 class FeedFoodStrings {
   // Network
-
-  static const url = "http://10.0.2.2/feedfood";
+  // web
+  static const url = "https://0fa0-115-164-119-146.ngrok-free.app/feedfood";
+  // phone
+  // static const url = "http://10.0.0.2/feedfood";
 
   static const register_url_volunteer = "$url/app/authentication/register.php";
 
@@ -20,7 +22,7 @@ class FeedFoodStrings {
 
   static const forgot_pass_url = "$url/app/authentication/forgotpass.php";
 
-  static const volunteer_post_url = "$url/app/volunteer/request.php";
+  static const volunteer_post_url = "$url/app/volunteer/request2.php";
 
   static const volunteer_history_url = "$url/app/volunteer/history.php";
   static const volunteer_profile_url = "$url/app/volunteer/profile.php";

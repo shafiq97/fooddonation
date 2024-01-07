@@ -77,8 +77,8 @@ class _NHomePageState extends State<NHomePage> {
           decoration: const BoxDecoration(
               gradient: LinearGradient(
             colors: [
-              Color.fromARGB(255, 155, 110, 246),
-              Color.fromARGB(255, 116, 182, 247)
+              Color.fromARGB(255, 3, 157, 90),
+              Color.fromARGB(255, 101, 229, 163)
             ],
           )),
         ),
@@ -111,8 +111,8 @@ class _NHomePageState extends State<NHomePage> {
       decoration: const BoxDecoration(
           gradient: LinearGradient(
         colors: [
-          Color.fromARGB(255, 155, 110, 246),
-          Color.fromARGB(255, 116, 182, 247)
+          Color.fromARGB(255, 3, 157, 90),
+          Color.fromARGB(255, 101, 229, 163)
         ],
       )),
       child: Padding(

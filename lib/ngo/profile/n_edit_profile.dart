@@ -77,7 +77,7 @@ class _nEditProfileState extends State<nEditProfile> {
                             width: 4,
                             color: Theme.of(context).scaffoldBackgroundColor,
                           ),
-                          color: Colors.deepPurple,
+                          color: Color(0xFF0B6D3E),
                         ),
                         child: const Icon(
                           Icons.edit,
@@ -128,7 +128,7 @@ class _nEditProfileState extends State<nEditProfile> {
                             borderRadius: BorderRadius.vertical(
                                 top: Radius.circular(20))))),
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.deepPurple,
+                        backgroundColor: Color(0xFF0B6D3E),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         )),

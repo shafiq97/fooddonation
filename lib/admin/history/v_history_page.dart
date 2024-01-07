@@ -133,7 +133,7 @@ class _AHistoryState extends State<AHistory> {
                                         style: const TextStyle(
                                             fontSize: 14,
                                             fontWeight: FontWeight.w500,
-                                            color: Colors.deepPurple),
+                                            color: Color(0xFF0B6D3E)),
                                       ),
                                       const SizedBox(
                                         height: 10,
@@ -170,7 +170,7 @@ class _AHistoryState extends State<AHistory> {
                                       : FoodPostHistoryList
                                                   .postHistory[index].Status ==
                                               "new"
-                                          ? Colors.deepPurple
+                                          ? Color(0xFF0B6D3E)
                                           : Colors.orange,
                                   fontSize: 10),
                             ),

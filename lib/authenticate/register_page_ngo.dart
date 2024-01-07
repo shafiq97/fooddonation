@@ -81,7 +81,7 @@ class _RegisterNgoState extends State<RegisterNgo> {
         body: Theme(
             data: ThemeData(
               colorScheme: Theme.of(context).colorScheme.copyWith(
-                    primary: Colors.deepPurple[400],
+                    primary: Color(0xFF0B6D3E),
                   ),
             ),
             child: Stack(
@@ -101,7 +101,7 @@ class _RegisterNgoState extends State<RegisterNgo> {
                               onPressed: details.onStepCancel,
                               style: OutlinedButton.styleFrom(
                                 side: const BorderSide(
-                                  color: Colors.deepPurple,
+                                  color: Color(0xFF0B6D3E),
                                 ),
                               ),
                               child: const Text('Back'),
@@ -116,7 +116,7 @@ class _RegisterNgoState extends State<RegisterNgo> {
                                     onPressed: details.onStepContinue,
                                     style: TextButton.styleFrom(
                                       foregroundColor: Colors.white,
-                                      backgroundColor: Colors.deepPurple[400],
+                                      backgroundColor: Color(0xFF0B6D3E),
                                     ),
                                     child: const Text('Next'),
                                   )
@@ -126,7 +126,7 @@ class _RegisterNgoState extends State<RegisterNgo> {
                                     })),
                                     style: TextButton.styleFrom(
                                       foregroundColor: Colors.white,
-                                      backgroundColor: Colors.deepPurple[400],
+                                      backgroundColor: Color(0xFF0B6D3E),
                                     ),
                                     child: const Text('Finish'),
                                   ),

@@ -248,7 +248,7 @@ class _SetPassState extends State<SetPass> {
                     onPressed: () async {
                       await authenticate(context);
                     },
-                    color: Colors.deepPurple[400],
+                    color: Color(0xFF0B6D3E),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5)),
                     child: const Text(

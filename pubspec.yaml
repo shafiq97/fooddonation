@@ -54,6 +54,7 @@ dependencies:
   geocoding: ^2.0.5
   permission_handler: ^11.0.1
   maps_launcher: ^2.2.0
+  lottie: ^2.7.0
 
 flutter_native_splash:
   image: assets/images/logo.png
@@ -87,6 +88,7 @@ flutter:
   assets:
     - assets/images/
     - assets/files/
+    - assets/json/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

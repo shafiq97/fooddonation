@@ -60,7 +60,7 @@ class VHomeCard extends StatelessWidget {
                     );
                   }),
                   style: ElevatedButton.styleFrom(
-                      primary: Colors.deepPurple[900],
+                      primary: Color(0xFF0B6D3E),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5),
                       )),
@@ -109,7 +109,7 @@ class TileCrad extends StatelessWidget {
               url: openUrl,
               customTabsOptions: const CustomTabsOptions(
                 colorScheme: CustomTabsColorScheme.dark,
-                toolbarColor: Colors.deepPurple,
+                toolbarColor: Color(0xFF0B6D3E),
                 secondaryToolbarColor: Colors.green,
                 navigationBarColor: Colors.amber,
                 shareState: CustomTabsShareState.on,
@@ -193,7 +193,7 @@ class NewsCards extends StatelessWidget {
                     borderRadius: const BorderRadius.only(
                         topRight: Radius.circular(5),
                         bottomRight: Radius.circular(5)),
-                    color: Colors.deepPurple[400],
+                    color: Color(0xFF0B6D3E),
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(5.0),
@@ -230,7 +230,7 @@ class NewsCards extends StatelessWidget {
                       customTabsOptions: const CustomTabsOptions(
                         colorScheme: CustomTabsColorScheme.dark,
                         // ignore: deprecated_member_use
-                        toolbarColor: Colors.deepPurple,
+                        toolbarColor: Color(0xFF0B6D3E),
                         secondaryToolbarColor: Colors.green,
                         navigationBarColor: Colors.amber,
                         shareState: CustomTabsShareState.on,
@@ -395,6 +395,7 @@ class NPendingCard extends StatelessWidget {
                 senderId: foodRequest.SenderAccountNo,
                 foodId: foodRequest.id,
                 imgUrl: imagePath.toString(),
+                donationId: foodRequest.donationId,
               ),
             ),
           );
@@ -455,7 +456,7 @@ class NPendingCard extends StatelessWidget {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(20),
                     child: Container(
-                        color: Colors.deepPurple[400],
+                        color: Color(0xFF0B6D3E),
                         child: const Padding(
                           padding:
                               EdgeInsets.symmetric(vertical: 2, horizontal: 10),

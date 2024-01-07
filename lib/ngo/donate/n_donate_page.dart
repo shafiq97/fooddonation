@@ -10,14 +10,14 @@ import 'package:intl/intl.dart' as intl;
 
 import '../../utils/routes.dart';
 
-class VDonatePage extends StatefulWidget {
-  const VDonatePage({super.key});
+class NDonatePage extends StatefulWidget {
+  const NDonatePage({super.key});
 
   @override
-  State<VDonatePage> createState() => _VDonatePageState();
+  State<NDonatePage> createState() => _NDonatePageState();
 }
 
-class _VDonatePageState extends State<VDonatePage> {
+class _NDonatePageState extends State<NDonatePage> {
   final _formKey = GlobalKey<FormState>();
   String title = '';
   String description = '';
@@ -249,7 +249,10 @@ class _VDonatePageState extends State<VDonatePage> {
                             )),
                         child: const Text(
                           "Post",
-                          style: TextStyle(fontSize: 24),
+                          style: TextStyle(
+                            fontSize: 24,
+                            color: Colors.white, // Set the color to white
+                          ),
                         ),
                       ),
                     ),
@@ -313,7 +316,7 @@ class _VDonatePageState extends State<VDonatePage> {
           desc: 'Thanks for donating food',
           btnOkOnPress: () {
             Navigator.pushReplacementNamed(
-                context, FeedFoodRoutes().vMainRoute);
+                context, FeedFoodRoutes().nMainRoute);
           },
         ).show();
       }

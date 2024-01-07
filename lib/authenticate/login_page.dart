@@ -10,6 +10,7 @@ import 'package:feed_food/widgets/sheet.dart';
 import 'package:feed_food/widgets/text_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:lottie/lottie.dart'; // Import Lottie package
 
 import '../utils/globals.dart';
 
@@ -44,19 +45,20 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(
                     height: 10,
                   ),
-                  Image.asset(
-                    "assets/images/login.png",
-                    height: 300,
+                  Lottie.asset(
+                    'assets/json/login.json', // Path to your Lottie file
+                    height: 300, // Set height, adjust as necessary
+                    width: 300, // Set width, adjust as necessary
                   ),
                   const SizedBox(
                     height: 10,
                   ),
-                  Text(
+                  const Text(
                     "Login to account",
                     style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.w800,
-                        color: Colors.green[500]),
+                        color: Color(0xFF0B6D3E)),
                   ),
                   const SizedBox(
                     height: 10,
@@ -90,7 +92,7 @@ class _LoginPageState extends State<LoginPage> {
                               await authenticate(context);
                             }),
                             // ignore: sort_child_properties_last
-                            child: Text(
+                            child: const Text(
                               "Login",
                               style: TextStyle(
                                 fontSize: 24,
@@ -100,7 +102,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
 
                             style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.green[500],
+                                backgroundColor: const Color(0xFF0B6D3E),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(5),
                                 )),

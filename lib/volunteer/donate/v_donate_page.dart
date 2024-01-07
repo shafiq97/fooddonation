@@ -51,7 +51,7 @@ class _VDonatePageState extends State<VDonatePage> {
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: Colors.deepPurple, width: 2),
+        border: Border.all(color: Color(0xFF0B6D3E), width: 2),
       ),
       child: DropdownButtonHideUnderline(
         child: DropdownButton<Map<String, dynamic>>(
@@ -59,7 +59,7 @@ class _VDonatePageState extends State<VDonatePage> {
           hint: const Text('Select Package'),
           isExpanded: true,
           icon: const Icon(Icons.arrow_drop_down_circle,
-              color: Colors.deepPurple),
+              color: Color(0xFF0B6D3E)),
           onChanged: (newValue) {
             setState(() {
               _selectedValue = newValue;
@@ -119,7 +119,7 @@ class _VDonatePageState extends State<VDonatePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Food Donation'),
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: Color(0xFF0B6D3E),
         elevation: 0,
       ),
       body: Form(
@@ -142,7 +142,7 @@ class _VDonatePageState extends State<VDonatePage> {
                   sendPostRequest();
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.deepPurple,
+                  primary: Color(0xFF0B6D3E),
                   padding: const EdgeInsets.symmetric(vertical: 12),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),

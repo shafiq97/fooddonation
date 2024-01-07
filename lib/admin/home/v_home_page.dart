@@ -58,7 +58,7 @@ class _AHomePageState extends State<AHomePage> {
           style: GoogleFonts.dancingScript(
               fontWeight: FontWeight.w900,
               fontSize: 28,
-              color: Colors.deepPurple[500]),
+              color: Color(0xFF0B6D3E)),
         ),
 
         // to remove arrow

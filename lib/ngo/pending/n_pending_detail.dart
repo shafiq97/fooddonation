@@ -17,13 +17,15 @@ class NPendingDetail extends StatefulWidget {
   String senderId;
   String foodId;
   String imgUrl;
+  String donationId;
 
-  NPendingDetail({
-    Key? key,
-    required this.senderId,
-    required this.foodId,
-    required this.imgUrl,
-  }) : super(key: key);
+  NPendingDetail(
+      {Key? key,
+      required this.senderId,
+      required this.foodId,
+      required this.imgUrl,
+      required this.donationId})
+      : super(key: key);
 
   @override
   State<NPendingDetail> createState() => _NPendingDetailState();
@@ -109,7 +111,7 @@ class _NPendingDetailState extends State<NPendingDetail> {
 
       http.Response res = await http.post(Uri.parse(uri), body: {
         'completeFoodRequest': UserAccountNo,
-        'id': widget.foodId,
+        'donationId': widget.donationId,
       });
 
       var response = jsonDecode(res.body);
@@ -151,9 +153,9 @@ class _NPendingDetailState extends State<NPendingDetail> {
               elevation: 1,
               title: Container(
                 alignment: Alignment.centerLeft,
-                child: Column(
+                child: const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children: [
                     Text(
                       "Food Detail",
                       style: TextStyle(
@@ -183,7 +185,7 @@ class _NPendingDetailState extends State<NPendingDetail> {
                   updateFoodStatus();
                 },
                 style: ElevatedButton.styleFrom(
-                    primary: Colors.green[800],
+                    backgroundColor: const Color(0xFF0B6D3E),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(0),
                     )),

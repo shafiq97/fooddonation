@@ -139,7 +139,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       await authenticate(context);
                     })),
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.deepPurple[300],
+                        backgroundColor: Color(0xFF0B6D3E),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         )),

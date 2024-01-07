@@ -52,7 +52,7 @@ class _RegisterUserState extends State<RegisterUser> {
               style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.w800,
-                  color: Colors.deepPurple[400]),
+                  color: Color(0xFF0B6D3E)),
             ),
             const SizedBox(
               height: 10,
@@ -93,7 +93,7 @@ class _RegisterUserState extends State<RegisterUser> {
                   signup(context);
                 }),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.deepPurple[300],
+                  backgroundColor: Color(0xFF0B6D3E),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
