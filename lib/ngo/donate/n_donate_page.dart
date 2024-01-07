@@ -39,7 +39,7 @@ class _NDonatePageState extends State<NDonatePage> {
           centerTitle: true,
           // ignore: prefer_const_constructors
           title: Text(
-            "Create New Post",
+            "Create New Donation",
             // ignore: prefer_const_constructors
             style: TextStyle(
               fontWeight: FontWeight.w600,
@@ -99,7 +99,7 @@ class _NDonatePageState extends State<NDonatePage> {
                         ),
                       ],
                     ),
-                    FoodTextField().PostTextArea("enter food details you have",
+                    FoodTextField().PostTextArea("Enter the family details",
                         "value cannot empty", food_details),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -109,7 +109,7 @@ class _NDonatePageState extends State<NDonatePage> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              'Food quantity',
+                              'Family Members',
                               style: Theme.of(context).textTheme.bodyLarge,
                             ),
                             Row(
@@ -131,8 +131,8 @@ class _NDonatePageState extends State<NDonatePage> {
                         ),
                         Slider(
                           min: 0,
-                          max: 500,
-                          divisions: 500,
+                          max: 20,
+                          divisions: 20,
                           value: maxValue,
                           onChanged: (value) {
                             setState(() {
@@ -142,33 +142,33 @@ class _NDonatePageState extends State<NDonatePage> {
                         ),
                       ],
                     ),
-                    const Align(
-                        alignment: Alignment.topLeft,
-                        child: Text("cooking time")),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              const Icon(Icons.alarm_outlined),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                _timeOfDay.format(context).toString(),
-                                style: const TextStyle(color: Colors.black54),
-                              ),
-                            ],
-                          ),
-                          TextButton(
-                              onPressed: _showTimePicker,
-                              child: const Text("select")),
-                        ],
-                      ),
-                    ),
-                    Row(children: const <Widget>[
+                    // const Align(
+                    //     alignment: Alignment.topLeft,
+                    //     child: Text("cooking time")),
+                    // Padding(
+                    //   padding: const EdgeInsets.symmetric(horizontal: 10),
+                    //   child: Row(
+                    //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //     children: [
+                    //       Row(
+                    //         children: [
+                    //           const Icon(Icons.alarm_outlined),
+                    //           const SizedBox(
+                    //             width: 10,
+                    //           ),
+                    //           Text(
+                    //             _timeOfDay.format(context).toString(),
+                    //             style: const TextStyle(color: Colors.black54),
+                    //           ),
+                    //         ],
+                    //       ),
+                    //       TextButton(
+                    //           onPressed: _showTimePicker,
+                    //           child: const Text("select")),
+                    //     ],
+                    //   ),
+                    // ),
+                    const Row(children: <Widget>[
                       Expanded(child: Divider()),
                       Text(
                         "Address",
@@ -177,60 +177,60 @@ class _NDonatePageState extends State<NDonatePage> {
                       ),
                       Expanded(child: Divider()),
                     ]),
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Checkbox(
-                          value: brushedTeeth,
-                          onChanged: (checked) async {
-                            setState(() {
-                              brushedTeeth = checked;
-                            });
+                        // Checkbox(
+                        //   value: brushedTeeth,
+                        //   onChanged: (checked) async {
+                        //     setState(() {
+                        //       brushedTeeth = checked;
+                        //     });
 
-                            if (checked!) {
-                              showDialog(
-                                  context: context,
-                                  barrierDismissible: false,
-                                  builder: ((context) {
-                                    return const Center(
-                                      child: CircularProgressIndicator(),
-                                    );
-                                  }));
+                        //     if (checked!) {
+                        //       showDialog(
+                        //           context: context,
+                        //           barrierDismissible: false,
+                        //           builder: ((context) {
+                        //             return const Center(
+                        //               child: CircularProgressIndicator(),
+                        //             );
+                        //           }));
 
-                              Map<String, dynamic?> data =
-                                  await GetLocatinState().getAddress();
+                        //       Map<String, dynamic?> data =
+                        //           await GetLocatinState().getAddress();
 
-                              setState(() {
-                                address_details.text =
-                                    data['locality'] + ", " + data['country'];
+                        //       setState(() {
+                        //         address_details.text =
+                        //             data['locality'] + ", " + data['country'];
 
-                                zip_details.text = data['zip_code'];
-                                lattitude = data['lattitude'].toString();
-                                longitude = data['longitude'].toString();
+                        //         zip_details.text = data['zip_code'];
+                        //         lattitude = data['lattitude'].toString();
+                        //         longitude = data['longitude'].toString();
 
-                                Navigator.of(context).pop();
-                              });
-                            }
-                          },
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 20, horizontal: 15),
-                          child: Text('use my current location',
-                              style: Theme.of(context).textTheme.titleMedium),
-                        ),
+                        //         Navigator.of(context).pop();
+                        //       });
+                        //     }
+                        //   },
+                        // ),
+                        // Padding(
+                        //   padding: const EdgeInsets.symmetric(
+                        //       vertical: 20, horizontal: 15),
+                        //   child: Text('use my current location',
+                        //       style: Theme.of(context).textTheme.titleMedium),
+                        // ),
                       ],
                     ),
                     FoodTextField().buildTextArea(
-                        "Pickup Addres",
-                        "enter your food pickup address",
+                        "Family Address",
+                        "Enter the family address",
                         "address not empty",
                         address_details),
                     FoodTextField().buildPincode(
                         "Zip code",
-                        "enter food pickup area code",
-                        "zip code cannot empty",
+                        "Enter Address Zip Code",
+                        "zip code cannot be empty",
                         zip_details),
                     const SizedBox(
                       height: 20,
@@ -243,7 +243,7 @@ class _NDonatePageState extends State<NDonatePage> {
                           await postRequest(context);
                         }),
                         style: ElevatedButton.styleFrom(
-                            backgroundColor: Color(0xFF0B6D3E),
+                            backgroundColor: const Color(0xFF0B6D3E),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5),
                             )),
@@ -312,8 +312,8 @@ class _NDonatePageState extends State<NDonatePage> {
           context: context,
           dialogType: DialogType.success,
           animType: AnimType.scale,
-          title: 'Food Request Submitted',
-          desc: 'Thanks for donating food',
+          title: 'Family data inserted',
+          desc: 'Thank you for your concern',
           btnOkOnPress: () {
             Navigator.pushReplacementNamed(
                 context, FeedFoodRoutes().nMainRoute);

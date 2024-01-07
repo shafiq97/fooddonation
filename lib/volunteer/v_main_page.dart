@@ -46,7 +46,7 @@ class _VHomePageState extends State<VMainPage> {
               /// Likes
               SalomonBottomBarItem(
                 icon: const Icon(Icons.add_box_outlined, size: 30),
-                title: const Text("Post"),
+                title: const Text("Donate"),
                 selectedColor: Colors.red,
               ),
 

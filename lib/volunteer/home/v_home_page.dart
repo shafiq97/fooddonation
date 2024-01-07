@@ -97,7 +97,7 @@ class _VHomePageState extends State<VHomePage> {
               const SizedBox(
                 height: 30,
               ),
-              Column(
+              const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
@@ -105,12 +105,12 @@ class _VHomePageState extends State<VHomePage> {
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
-                        color: Colors.blueGrey[900]),
+                        color: Colors.white),
                   ),
-                  const SizedBox(
+                  SizedBox(
                     height: 20,
                   ),
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       TileCrad(

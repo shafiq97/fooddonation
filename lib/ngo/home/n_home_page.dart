@@ -106,7 +106,7 @@ class _NHomePageState extends State<NHomePage> {
 
   Widget buildHeaderSection() {
     return Container(
-      height: 250,
+      height: 25,
       width: double.infinity,
       decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -115,29 +115,29 @@ class _NHomePageState extends State<NHomePage> {
           Color.fromARGB(255, 101, 229, 163)
         ],
       )),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
+      child: const Padding(
+        padding: EdgeInsets.all(8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            const SizedBox(height: 5),
-            const Text(
-              "Request Status",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  decoration: TextDecoration.underline),
-            ),
-            const SizedBox(height: 30),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                ReqCards(title1: newStat!, title2: "New"),
-                ReqCards(title1: pendingStat!, title2: "Pending"),
-                ReqCards(title1: completedStat!, title2: "Completed"),
-              ],
-            ),
+            // const SizedBox(height: 5),
+            // const Text(
+            //   "Request Status",
+            //   style: TextStyle(
+            //       color: Colors.white,
+            //       fontSize: 16,
+            //       fontWeight: FontWeight.w600,
+            //       decoration: TextDecoration.underline),
+            // ),
+            // const SizedBox(height: 30),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+            //   children: [
+            //     ReqCards(title1: newStat!, title2: "New"),
+            //     ReqCards(title1: pendingStat!, title2: "Pending"),
+            //     ReqCards(title1: completedStat!, title2: "Completed"),
+            //   ],
+            // ),
           ],
         ),
       ),
@@ -154,7 +154,7 @@ class _NHomePageState extends State<NHomePage> {
             color: Colors.grey.withOpacity(0.5),
             spreadRadius: 2,
             blurRadius: 7,
-            offset: Offset(0, 3),
+            offset: const Offset(0, 3),
           ),
         ],
       ),
@@ -164,7 +164,7 @@ class _NHomePageState extends State<NHomePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              "All Request",
+              "Family Data",
               style: TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,

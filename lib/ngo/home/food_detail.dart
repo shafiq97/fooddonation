@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
@@ -119,7 +121,7 @@ class _NFoodDetailState extends State<NFoodDetail> {
           context: context,
           dialogType: DialogType.success,
           animType: AnimType.scale,
-          title: 'Food Request Accepted',
+          title: 'Data Created',
           desc: 'Thanks for accepting food',
           btnOkOnPress: () {
             Navigator.pushReplacementNamed(

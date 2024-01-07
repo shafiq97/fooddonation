@@ -66,7 +66,7 @@ class VHomeCard extends StatelessWidget {
                       )),
                   child: const Text(
                     "Donate",
-                    style: TextStyle(fontSize: 14),
+                    style: TextStyle(fontSize: 14, color: Colors.white),
                   ),
                 ),
               ),
@@ -333,13 +333,13 @@ class NRequestCards extends StatelessWidget {
                         fontSize: 11,
                         fontWeight: FontWeight.w300),
                   ),
-                  Text(
-                    "Cooking Time ${foodRequest.CookingTime}",
-                    style: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 10,
-                        fontWeight: FontWeight.w300),
-                  ),
+                  // Text(
+                  //   "Cooking Time ${foodRequest.CookingTime}",
+                  //   style: const TextStyle(
+                  //       color: Colors.black,
+                  //       fontSize: 10,
+                  //       fontWeight: FontWeight.w300),
+                  // ),
                   Text(
                     "Location : ${"${foodRequest.Address}, ${foodRequest.ZipCode}"}",
                     style: const TextStyle(
@@ -436,13 +436,13 @@ class NPendingCard extends StatelessWidget {
                         fontSize: 11,
                         fontWeight: FontWeight.w300),
                   ),
-                  Text(
-                    "Cooking Time ${foodRequest.CookingTime}",
-                    style: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 10,
-                        fontWeight: FontWeight.w300),
-                  ),
+                  // Text(
+                  //   "Cooking Time ${foodRequest.CookingTime}",
+                  //   style: const TextStyle(
+                  //       color: Colors.black,
+                  //       fontSize: 10,
+                  //       fontWeight: FontWeight.w300),
+                  // ),
                   Text(
                     "Location : ${"${foodRequest.Address}, ${foodRequest.ZipCode}"}",
                     style: const TextStyle(
@@ -545,13 +545,13 @@ class NCompleteCard extends StatelessWidget {
                         fontSize: 11,
                         fontWeight: FontWeight.w300),
                   ),
-                  Text(
-                    "Cooking Time ${foodRequest.CookingTime}",
-                    style: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 10,
-                        fontWeight: FontWeight.w300),
-                  ),
+                  // Text(
+                  //   "Cooking Time ${foodRequest.CookingTime}",
+                  //   style: const TextStyle(
+                  //       color: Colors.black,
+                  //       fontSize: 10,
+                  //       fontWeight: FontWeight.w300),
+                  // ),
                   Text(
                     "Location : ${"${foodRequest.Address}, ${foodRequest.ZipCode}"}",
                     style: const TextStyle(
@@ -562,22 +562,22 @@ class NCompleteCard extends StatelessWidget {
                   const SizedBox(
                     height: 5,
                   ),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: Container(
-                        color: Colors.green[400],
-                        child: const Padding(
-                          padding:
-                              EdgeInsets.symmetric(vertical: 2, horizontal: 10),
-                          child: Text(
-                            "Completed",
-                            style: TextStyle(fontSize: 12, color: Colors.white),
-                          ),
-                        )),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  )
+                  // ClipRRect(
+                  //   borderRadius: BorderRadius.circular(20),
+                  //   child: Container(
+                  //       color: Colors.green[400],
+                  //       child: const Padding(
+                  //         padding:
+                  //             EdgeInsets.symmetric(vertical: 2, horizontal: 10),
+                  //         child: Text(
+                  //           "Completed",
+                  //           style: TextStyle(fontSize: 12, color: Colors.white),
+                  //         ),
+                  //       )),
+                  // ),
+                  // const SizedBox(
+                  //   height: 10,
+                  // )
                 ],
               ),
             ),
