@@ -1,5 +1,6 @@
 import 'package:feed_food/ngo/complete/n_complete.dart';
 import 'package:feed_food/ngo/donate/n_donate_page.dart';
+import 'package:feed_food/ngo/history/n_history_page.dart';
 import 'package:feed_food/ngo/pending/n_pending.dart';
 import 'package:feed_food/ngo/profile/n_profile.dart';
 
@@ -19,8 +20,8 @@ class _NMainState extends State<NMain> {
   var _currentIndex = 0;
   List pages = [
     const NHomePage(),
-    // const nPendingRequest(),
-    const NComplete(),
+    const NHistory(),
+    // const NComplete(),
     const NDonatePage(),
     const NProfile(),
   ];
@@ -53,18 +54,18 @@ class _NMainState extends State<NMain> {
                 ),
 
                 /// Search
-                // SalomonBottomBarItem(
-                //   icon: const Icon(Icons.history_outlined),
-                //   title: const Text("Pending"),
-                //   selectedColor: Colors.orange,
-                // ),
+                SalomonBottomBarItem(
+                  icon: const Icon(Icons.history_outlined),
+                  title: const Text("History"),
+                  selectedColor: Colors.orange,
+                ),
 
                 /// Search
-                SalomonBottomBarItem(
-                  icon: const Icon(Icons.done_all_outlined),
-                  title: const Text("Completed"),
-                  selectedColor: Colors.teal,
-                ),
+                // SalomonBottomBarItem(
+                //   icon: const Icon(Icons.done_all_outlined),
+                //   title: const Text("Completed"),
+                //   selectedColor: Colors.teal,
+                // ),
 
                 SalomonBottomBarItem(
                   icon: const Icon(Icons.add),

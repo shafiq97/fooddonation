@@ -43,6 +43,8 @@ class FeedFoodStrings {
   static const ngo_update_complete_food_url =
       "$url/app/ngo/update_complete.php";
   static const ngo_profile_url = "$url/app/ngo/profile.php";
+  static const ngo_history_url = "$url/app/ngo/history.php";
+  static const ngo_update_image = "$url/app/ngo/update_image.php";
 
   // Other NGO Information
   static const ngo_url1 = "https://foodaidfoundation.org/";

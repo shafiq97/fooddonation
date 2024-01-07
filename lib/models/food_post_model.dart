@@ -63,6 +63,9 @@ class FoodPostHistoryModel {
   final String Status;
   final String CurrentTime;
   final String Package;
+  final String DonorName;
+  final String ImgUrl;
+  final String DonationId;
 
   FoodPostHistoryModel(
     this.FoodDetails,
@@ -73,6 +76,9 @@ class FoodPostHistoryModel {
     this.Status,
     this.CurrentTime,
     this.Package,
+    this.DonorName,
+    this.ImgUrl,
+    this.DonationId,
   );
 
   FoodPostHistoryModel copyWith({
@@ -84,6 +90,9 @@ class FoodPostHistoryModel {
     String? Status,
     String? CurrentTime,
     String? Package,
+    String? DonorName,
+    String? ImgUrl,
+    String? DonationId,
   }) {
     return FoodPostHistoryModel(
       FoodDetails ?? this.FoodDetails,
@@ -94,6 +103,9 @@ class FoodPostHistoryModel {
       Status ?? this.Status,
       CurrentTime ?? this.CurrentTime,
       Package ?? this.Package,
+      DonorName ?? this.DonorName,
+      ImgUrl ?? this.ImgUrl,
+      DonationId ?? this.DonationId,
     );
   }
 
@@ -106,6 +118,9 @@ class FoodPostHistoryModel {
       'ZipCode': ZipCode,
       'Status': Status,
       'CurrentTime': CurrentTime,
+      'DonorName': DonorName,
+      'ImgUrl': ImgUrl,
+      'DonationId': DonationId,
     };
   }
 
@@ -119,6 +134,9 @@ class FoodPostHistoryModel {
       map['Status'] as String,
       map['CurrentTime'] as String,
       map['Package'] as String,
+      map['DonorName'] as String,
+      map['ImgUrl'] as String,
+      map['DonationId'] as String,
     );
   }
 
@@ -142,7 +160,11 @@ class FoodPostHistoryModel {
         other.Address == Address &&
         other.ZipCode == ZipCode &&
         other.Status == Status &&
-        other.CurrentTime == CurrentTime;
+        other.CurrentTime == CurrentTime &&
+        other.Package == Package &&
+        other.ImgUrl == ImgUrl &&
+        other.DonationId == DonationId &&
+        other.DonorName == DonorName;
   }
 
   @override
@@ -153,6 +175,10 @@ class FoodPostHistoryModel {
         Address.hashCode ^
         ZipCode.hashCode ^
         Status.hashCode ^
-        CurrentTime.hashCode;
+        CurrentTime.hashCode ^
+        Package.hashCode ^
+        ImgUrl.hashCode ^
+        DonationId.hashCode ^
+        DonorName.hashCode;
   }
 }

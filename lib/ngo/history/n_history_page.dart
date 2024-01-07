@@ -1,0 +1,213 @@
+import 'dart:convert';
+import 'dart:core';
+import 'dart:developer';
+
+import 'package:feed_food/models/food_post_model.dart';
+import 'package:feed_food/ngo/history/update_image_url.dart';
+import 'package:feed_food/utils/globals.dart';
+import 'package:feed_food/utils/strings.dart';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+class NHistory extends StatefulWidget {
+  const NHistory({super.key});
+
+  @override
+  State<NHistory> createState() => _NHistoryState();
+}
+
+class _NHistoryState extends State<NHistory> {
+  List<String> randomImages = [
+    "assets/images/nHome1.png",
+    "assets/images/nHome2.png",
+    "assets/images/nHome3.png",
+    "assets/images/nHome4.jpg",
+    "assets/images/nHome5.jpg",
+    "assets/images/nHome6.jpg",
+    "assets/images/nHome7.jpg",
+    "assets/images/nHome8.jpg",
+    "assets/images/nHome9.jpg",
+    "assets/images/nHome10.jpg",
+  ];
+  String? imagePath;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    getHistory();
+    super.initState();
+  }
+
+  getHistory() async {
+    // URL for the news API endpoint
+    var url = FeedFoodStrings.ngo_history_url;
+    try {
+      // Make a GET request to the API endpoint
+      var response = await http.post(Uri.parse(url), body: {
+        'accountNo': UserAccountNo,
+      });
+      if (response.statusCode == 200) {
+        // Decode the JSON data from the response
+        var data = jsonDecode(response.body);
+        // Return the list of articles from the API
+        var foodHistory = data['request'];
+
+        FoodPostHistoryList.postHistory = List.from(foodHistory)
+            .map<FoodPostHistoryModel>(
+                (item) => FoodPostHistoryModel.fromMap(item))
+            .toList();
+
+        log(FoodPostHistoryList.postHistory.toString());
+      } else {
+        // If the response was not successful, throw an error
+      }
+      setState(() {});
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
+  String getImage() {
+    randomImages.shuffle();
+    return imagePath = randomImages[0];
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: const Text(
+            "History",
+            style: TextStyle(
+                fontWeight: FontWeight.w600,
+                fontSize: 18,
+                color: Colors.black87),
+          ),
+          elevation: 1,
+          // automaticallyImplyLeading: false,
+        ),
+        body: Container(
+          child: (FoodPostHistoryList.postHistory.isNotEmpty)
+              ? ListView.builder(
+                  itemCount: FoodPostHistoryList.postHistory.length,
+                  shrinkWrap: true,
+                  itemBuilder: (BuildContext context, int index) => Container(
+                    width: MediaQuery.of(context).size.width,
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    child: InkWell(
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) => UpdateImageModal(
+                              foodPostHistory:
+                                  FoodPostHistoryList.postHistory[index]),
+                        );
+                      },
+                      child: Card(
+                        elevation: 2,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(0),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    child: Container(
+                                        width: 90,
+                                        height: 90,
+                                        decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                            image: AssetImage(getImage()),
+                                            fit: BoxFit.cover,
+                                          ),
+                                        )),
+                                  ),
+                                  const SizedBox(
+                                    width: 20,
+                                  ),
+                                  SizedBox(
+                                    width: 150,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text(
+                                          FoodPostHistoryList.postHistory[index]
+                                                      .FoodDetails.length >
+                                                  26
+                                              ? '${FoodPostHistoryList.postHistory[index].FoodDetails.substring(0, 20)}...'
+                                              : "By: ${FoodPostHistoryList.postHistory[index].DonorName}",
+                                          style: const TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500,
+                                              color: Color(0xFF0B6D3E)),
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text(
+                                          "For: ${FoodPostHistoryList.postHistory[index].FoodDetails}",
+                                          style: const TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500,
+                                              color: Color(0xFF0B6D3E)),
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text(
+                                          FoodPostHistoryList.postHistory[index]
+                                                      .Address.length >
+                                                  25
+                                              ? '${FoodPostHistoryList.postHistory[index].Address.substring(0, 25)}...'
+                                              : FoodPostHistoryList
+                                                  .postHistory[index].Address,
+                                          style: const TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 12),
+                                        ),
+                                        Text(
+                                            FoodPostHistoryList
+                                                .postHistory[index].CurrentTime
+                                                .replaceAll(" ", "\n"),
+                                            style: const TextStyle(
+                                                color: Colors.black54,
+                                                fontSize: 10)),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Text(
+                                "Package ${FoodPostHistoryList.postHistory[index].Package}",
+                                style: TextStyle(
+                                    color: FoodPostHistoryList
+                                                .postHistory[index].Status ==
+                                            "new"
+                                        ? Color(0xFF0B6D3E)
+                                        : Colors.orange,
+                                    fontSize: 10),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+              : const Center(
+                  child: CircularProgressIndicator(),
+                ),
+        ));
+  }
+}

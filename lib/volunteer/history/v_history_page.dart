@@ -61,12 +61,35 @@ class _VHistoryState extends State<VHistory> {
         // If the response was not successful, throw an error
       }
       setState(() {});
-    } catch (e) {}
+    } catch (e) {
+      log(e.toString());
+    }
   }
 
   String getImage() {
     randomImages.shuffle();
     return imagePath = randomImages[0];
+  }
+
+  void _showProofOfDeliveryDialog(BuildContext context, String imgUrl) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Proof of Delivery"),
+          content: Image.network(
+              imgUrl), // Assuming imgUrl is a direct link to the image
+          actions: <Widget>[
+            ElevatedButton(
+              child: Text("Close"),
+              onPressed: () {
+                Navigator.of(context).pop(); // Closes the dialog
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -172,6 +195,23 @@ class _VHistoryState extends State<VHistory> {
                                       ? Color(0xFF0B6D3E)
                                       : Colors.orange,
                                   fontSize: 10),
+                            ),
+                            GestureDetector(
+                              onTap: () => _showProofOfDeliveryDialog(
+                                  context,
+                                  FoodPostHistoryList
+                                      .postHistory[index].ImgUrl),
+                              child: Text(
+                                "View Proof of Delivery",
+                                style: TextStyle(
+                                  color: FoodPostHistoryList
+                                              .postHistory[index].Status ==
+                                          "new"
+                                      ? Color(0xFF0B6D3E)
+                                      : Colors.orange,
+                                  fontSize: 10,
+                                ),
+                              ),
                             ),
                           ],
                         ),

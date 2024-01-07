@@ -203,9 +203,9 @@ class _NHomePageState extends State<NHomePage> {
             "ID: ${foodRequest['id']}",
             style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
-          Text("Food Details: ${foodRequest['food_details']}"),
-          Text("Food Quantity: ${foodRequest['food_quantity']}"),
-          Text("Cooking Time: ${foodRequest['cooking_time']}"),
+          Text("Family details: ${foodRequest['food_details']}"),
+          Text("Family members: ${foodRequest['food_quantity']}"),
+          // Text("Cooking Time: ${foodRequest['cooking_time']}"),
         ],
       ),
     );
