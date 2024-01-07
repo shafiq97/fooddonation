@@ -29,7 +29,7 @@ class _VHomePageState extends State<VHomePage> {
   getNews() async {
     // URL for the news API endpoint
     var url =
-        'https://newsapi.org/v2/top-headlines?country=us&apiKey=492cea89686a4a0cbd038b1015ad08c3';
+        'https://newsapi.org/v2/everything?q="food"&apiKey=492cea89686a4a0cbd038b1015ad08c3';
     try {
       // Make a GET request to the API endpoint
       var response = await http.get(Uri.parse(url));
@@ -143,7 +143,7 @@ class _VHomePageState extends State<VHomePage> {
               Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  "Lates Update",
+                  "Latest Update",
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,

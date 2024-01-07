@@ -14,72 +14,92 @@ class VHomeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 200,
-      width: 400,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        gradient: const LinearGradient(
-          colors: [
-            Color.fromARGB(255, 155, 110, 246),
-            Color.fromARGB(255, 116, 182, 247)
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Align(
+              alignment: Alignment.topLeft,
+              child: Text(
+                "Food Aid Catalogue",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                    color: Colors.green[700]),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            _buildPackageCard("RM 30 Package - Budget Snack Pack", [
+              "Mixed Nuts (150g)",
+              "Dried Fruits (100g)",
+              "Energy Bars (1)"
+            ]),
+            const SizedBox(height: 20),
+            _buildPackageCard("RM 50 Package - Nutritious Snack Pack", [
+              "Mixed Nuts (200g)",
+              "Dried Fruits (150g)",
+              "Energy Bars (2)"
+            ]),
+            const SizedBox(height: 20),
+            _buildPackageCard("RM 100 Package - Balanced Breakfast Bundle", [
+              "Oatmeal Packets (4)",
+              "Whole Grain Cereal (250g)",
+              "Nut Butter (e.g., almond or peanut butter - 200g)",
+              "Honey (100g)",
+              "Fruit Preserves (100g)"
+            ]),
+            const SizedBox(height: 20),
+            _buildPackageCard("RM 130 Package - Superfood Mix", [
+              "Chia Seeds (150g)",
+              "Quinoa (250g)",
+              "Mixed Berries (dried or freeze-dried - 150g)",
+              "Green Tea (1 box)"
+            ]),
+            const SizedBox(height: 20),
+            _buildPackageCard("RM 150 Package - Protein Power Pack", [
+              "Protein Bars (4)",
+              "Trail Mix with Seeds (200g)",
+              "Greek Yogurt (3 small cups)",
+              "Protein Powder (single-serving - 4)"
+            ]),
           ],
-          begin: Alignment.bottomLeft,
-          end: Alignment.topRight,
         ),
       ),
-      child: Row(
-        children: [
-          Column(
+    );
+  }
+
+  Widget _buildPackageCard(String title, List<String> items) {
+    return Container(
+      width: double.infinity, // Ensures the container fills the width
+      child: Card(
+        elevation: 4,
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(
-                height: 40,
-              ),
-              const Padding(
-                padding: EdgeInsets.all(10.0),
-                child: Text(
-                  "Share Your Love \n with donation",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16),
+              Text(
+                title,
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.green[600],
                 ),
               ),
-              const SizedBox(
-                height: 10,
-              ),
-              SizedBox(
-                height: 30,
-                width: 100,
-                child: ElevatedButton(
-                  onPressed: (() {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const VDonatePage()),
-                    );
-                  }),
-                  style: ElevatedButton.styleFrom(
-                      primary: Color(0xFF0B6D3E),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5),
-                      )),
-                  child: const Text(
-                    "Donate",
-                    style: TextStyle(fontSize: 14, color: Colors.white),
-                  ),
-                ),
-              ),
+              const SizedBox(height: 10),
+              ...items
+                  .map((item) => Padding(
+                        padding: const EdgeInsets.only(bottom: 6),
+                        child: Text(item),
+                      ))
+                  .toList()
             ],
           ),
-          const SizedBox(
-            width: 10,
-          ),
-          Image.asset(
-            "assets/images/donate_love.png",
-            height: 160,
-          ),
-        ],
+        ),
       ),
     );
   }
@@ -97,49 +117,7 @@ class TileCrad extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 85,
-      width: 85,
-      child: Card(
-        // color: Color.fromARGB(255, 199, 185, 249),
-        elevation: 5,
-        child: InkWell(
-          onTap: (() async {
-            await FlutterWebBrowser.openWebPage(
-              url: openUrl,
-              customTabsOptions: const CustomTabsOptions(
-                colorScheme: CustomTabsColorScheme.dark,
-                toolbarColor: Color(0xFF0B6D3E),
-                secondaryToolbarColor: Colors.green,
-                navigationBarColor: Colors.amber,
-                shareState: CustomTabsShareState.on,
-                instantAppsEnabled: true,
-                showTitle: true,
-                urlBarHidingEnabled: true,
-              ),
-            );
-          }),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-            child: Column(
-              children: [
-                Image.asset(
-                  image_url,
-                  height: 30,
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Text(
-                  title_text,
-                  style: const TextStyle(fontSize: 10),
-                )
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
+    return Container();
   }
 }
 
@@ -189,8 +167,8 @@ class NewsCards extends StatelessWidget {
               Align(
                 alignment: Alignment.topLeft,
                 child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.only(
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
                         topRight: Radius.circular(5),
                         bottomRight: Radius.circular(5)),
                     color: Color(0xFF0B6D3E),
@@ -456,7 +434,7 @@ class NPendingCard extends StatelessWidget {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(20),
                     child: Container(
-                        color: Color(0xFF0B6D3E),
+                        color: const Color(0xFF0B6D3E),
                         child: const Padding(
                           padding:
                               EdgeInsets.symmetric(vertical: 2, horizontal: 10),
@@ -645,9 +623,9 @@ class ReqCards extends StatelessWidget {
               children: [
                 Text(
                   title1,
-                  style: TextStyle(fontSize: 18),
+                  style: const TextStyle(fontSize: 18),
                 ),
-                Text(title2, style: TextStyle(fontSize: 11)),
+                Text(title2, style: const TextStyle(fontSize: 11)),
               ],
             ),
           ),

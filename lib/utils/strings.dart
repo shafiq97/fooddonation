@@ -6,7 +6,7 @@
 class FeedFoodStrings {
   // Network
   // web
-  static const url = "https://0fa0-115-164-119-146.ngrok-free.app/feedfood";
+  static const url = "http://localhost/feedfood";
   // phone
   // static const url = "http://10.0.0.2/feedfood";
 
