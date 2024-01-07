@@ -22,7 +22,6 @@ import 'package:feed_food/ngo/home/n_home_page.dart';
 import 'package:feed_food/ngo/n_main_page.dart';
 import 'package:feed_food/utils/routes.dart';
 import 'package:feed_food/volunteer/v_main_page.dart';
-import 'package:feed_food/admin/a_main_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -101,7 +100,6 @@ class MyApp extends StatelessWidget {
         FeedFoodRoutes().Walkthrough: (context) => const Walkthrough(),
         FeedFoodRoutes().SetPass: (context) => const SetPass(),
         FeedFoodRoutes().nMainRoute: (context) => const NMain(),
-        FeedFoodRoutes().aMainRoute: (context) => const AMainPage(),
         FeedFoodRoutes().vMainRoute: (context) => const VMainPage(),
         FeedFoodRoutes().nMainRoute: (context) => const NMain(),
         FeedFoodRoutes().vHistory: (context) => const VHistory(),

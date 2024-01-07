@@ -34,6 +34,7 @@ class _NDonatePageState extends State<NDonatePage> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
           centerTitle: true,
@@ -78,7 +79,9 @@ class _NDonatePageState extends State<NDonatePage> {
           child: SingleChildScrollView(
             padding: const EdgeInsets.all(16),
             child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 400),
+              constraints: const BoxConstraints(
+                maxWidth: 1200, // You can adjust this for maximum width
+              ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,

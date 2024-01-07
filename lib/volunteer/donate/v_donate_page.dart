@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:feed_food/ngo/models/n_home_model.dart';
 import 'package:feed_food/utils/globals.dart';
+import 'package:feed_food/volunteer/donate/v_pending_detail.dart';
 import 'package:feed_food/widgets/cards.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -62,8 +63,23 @@ class _VDonatePageState extends State<VDonatePage> {
     }
   }
 
+  List<String> randomImages = [
+    "assets/images/nHome1.png",
+    "assets/images/nHome2.png",
+    "assets/images/nHome3.png",
+    "assets/images/nHome4.jpg",
+    "assets/images/nHome5.jpg",
+    "assets/images/nHome6.jpg",
+    "assets/images/nHome7.jpg",
+    "assets/images/nHome8.jpg",
+    "assets/images/nHome9.jpg",
+    "assets/images/nHome10.jpg",
+  ];
+  String? imagePath;
   @override
   Widget build(BuildContext context) {
+    randomImages.shuffle();
+    imagePath = randomImages[0];
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
@@ -99,10 +115,30 @@ class _VDonatePageState extends State<VDonatePage> {
                   padding: const EdgeInsets.only(top: 10),
                   child: ListView.builder(
                     itemCount: NgoFoodRequest.requestList.length,
-                    itemBuilder: ((context, index) {
-                      return NCompleteCard(
-                          foodRequest: NgoFoodRequest.requestList[index]);
-                    }),
+                    itemBuilder: (context, index) {
+                      // Accessing individual item from the list
+                      var foodRequestItem = NgoFoodRequest.requestList[index];
+
+                      return InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => VPendingDetail(
+                                senderId: foodRequestItem.SenderAccountNo,
+                                foodId: foodRequestItem.id,
+                                imgUrl: imagePath.toString(),
+                                donationId: foodRequestItem.donationId,
+                              ),
+                            ),
+                          );
+                        },
+                        child: NCompleteCard(
+                          foodRequest:
+                              foodRequestItem, // Passing the individual food request to the card
+                        ),
+                      );
+                    },
                   ),
                 ),
     );
