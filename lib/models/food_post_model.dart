@@ -62,6 +62,7 @@ class FoodPostHistoryModel {
   final String ZipCode;
   final String Status;
   final String CurrentTime;
+  final String Package;
 
   FoodPostHistoryModel(
     this.FoodDetails,
@@ -71,6 +72,7 @@ class FoodPostHistoryModel {
     this.ZipCode,
     this.Status,
     this.CurrentTime,
+    this.Package,
   );
 
   FoodPostHistoryModel copyWith({
@@ -81,6 +83,7 @@ class FoodPostHistoryModel {
     String? ZipCode,
     String? Status,
     String? CurrentTime,
+    String? Package,
   }) {
     return FoodPostHistoryModel(
       FoodDetails ?? this.FoodDetails,
@@ -90,6 +93,7 @@ class FoodPostHistoryModel {
       ZipCode ?? this.ZipCode,
       Status ?? this.Status,
       CurrentTime ?? this.CurrentTime,
+      Package ?? this.Package,
     );
   }
 
@@ -114,6 +118,7 @@ class FoodPostHistoryModel {
       map['ZipCode'] as String,
       map['Status'] as String,
       map['CurrentTime'] as String,
+      map['Package'] as String,
     );
   }
 

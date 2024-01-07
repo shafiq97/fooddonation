@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:core';
+import 'dart:developer';
 
 import 'package:feed_food/models/food_post_model.dart';
 import 'package:feed_food/utils/globals.dart';
@@ -54,6 +55,8 @@ class _VHistoryState extends State<VHistory> {
             .map<FoodPostHistoryModel>(
                 (item) => FoodPostHistoryModel.fromMap(item))
             .toList();
+
+        log(FoodPostHistoryList.postHistory.toString());
       } else {
         // If the response was not successful, throw an error
       }
@@ -161,17 +164,13 @@ class _VHistoryState extends State<VHistory> {
                               ],
                             ),
                             Text(
-                              FoodPostHistoryList.postHistory[index].Status,
+                              "Package ${FoodPostHistoryList.postHistory[index].Package}",
                               style: TextStyle(
                                   color: FoodPostHistoryList
                                               .postHistory[index].Status ==
-                                          "completed"
-                                      ? Colors.green
-                                      : FoodPostHistoryList
-                                                  .postHistory[index].Status ==
-                                              "new"
-                                          ? Color(0xFF0B6D3E)
-                                          : Colors.orange,
+                                          "new"
+                                      ? Color(0xFF0B6D3E)
+                                      : Colors.orange,
                                   fontSize: 10),
                             ),
                           ],
