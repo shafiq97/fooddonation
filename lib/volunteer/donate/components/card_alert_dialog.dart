@@ -33,13 +33,13 @@ class CardAlertDialog extends StatelessWidget {
             ),
           ),
         ),
-        Column(
+        const Column(
           mainAxisSize: MainAxisSize.min,
-          children: const [
+          children: [
             Padding(
               padding: EdgeInsets.all(8.0),
               child: Text(
-                'Su tarjeta fue aceptada',
+                'Payment Successfull',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -50,7 +50,7 @@ class CardAlertDialog extends StatelessWidget {
             Padding(
               padding: EdgeInsets.all(8.0),
               child: Text(
-                'Ya puedes usar tu tarjeta para hacer pagos, Gracias',
+                'Thank you for your kind donation',
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
               ),
             ),

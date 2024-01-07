@@ -23,7 +23,7 @@ Card buildCreditCard({
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Text(
-                'Banamex',
+                'CIMB',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 20,

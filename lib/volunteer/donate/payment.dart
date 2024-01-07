@@ -1,3 +1,4 @@
+import 'package:feed_food/utils/routes.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flip_card/flip_card_controller.dart';
 import 'package:flutter/material.dart';
@@ -320,17 +321,27 @@ class _PaymentPageState extends State<PaymentPage> {
                 onPressed: () {
                   Future.delayed(const Duration(milliseconds: 300), () {
                     showDialog(
-                        context: context,
-                        builder: (context) => const CardAlertDialog());
+                      context: context,
+                      builder: (context) => const CardAlertDialog(),
+                    ).then((value) {
+                      // Once the dialog is closed, navigate to the homepage
+                      Navigator.pushReplacementNamed(
+                          context,
+                          FeedFoodRoutes()
+                              .vMainRoute); // Update with your actual route
+                    });
+
+                    // Clearing the controllers
                     cardCvvController.clear();
                     cardExpiryDateController.clear();
                     cardHolderNameController.clear();
                     cardNumberController.clear();
+                    // Assuming flipCardController.toggleCard() is necessary for your UI logic
                     flipCardController.toggleCard();
                   });
                 },
                 child: Text(
-                  'Add Card'.toUpperCase(),
+                  'Pay Donation'.toUpperCase(),
                   style: const TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.w500,
