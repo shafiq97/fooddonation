@@ -27,8 +27,9 @@ class FeedFoodStrings {
   static const volunteer_update_profile_url = "$url/app/volunteer/profile.php";
 
   static const volunteer_stat_profile_url = "$url/app/volunteer/stat.php";
+  static const volunteer_request = "$url/app/volunteer/request.php";
 
-  // NGO 
+  // NGO
   static const ngo_food_request_url = "$url/app/ngo/food_request.php";
   static const ngo_food_pending_url = "$url/app/ngo/food_pending.php";
   static const ngo_food_complete_url = "$url/app/ngo/food_complete.php";
@@ -44,7 +45,7 @@ class FeedFoodStrings {
   static const ngo_url2 = "https://www.yfbm.org/";
 
   static const ngo_url3 = "https://www.wateraid.org/";
-  static const ngo_url4 = "https://sadsindia.org/";
+  static const ngo_url4 = "https://.org/";
 
   // walkthrough
   static const Whead1 = "No Food Waste";

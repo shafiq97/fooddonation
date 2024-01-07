@@ -1,8 +1,9 @@
 import 'dart:developer';
-import 'package:feed_food/utils/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:feed_food/utils/globals.dart'; // Ensure this contains UserAccountNo
+import 'package:feed_food/utils/strings.dart'; // Ensure this contains the URLs
 
 class VDonatePage extends StatefulWidget {
   const VDonatePage({Key? key}) : super(key: key);
@@ -14,8 +15,8 @@ class VDonatePage extends StatefulWidget {
 class _VDonatePageState extends State<VDonatePage> {
   final _formKey = GlobalKey<FormState>();
 
-  List<String> _dropdownValues = [];
-  String? _selectedValue;
+  List<Map<String, dynamic>> _dropdownValues = []; // Changed to a list of maps
+  Map<String, dynamic>? _selectedValue; // To hold the selected item
 
   @override
   void initState() {
@@ -25,14 +26,23 @@ class _VDonatePageState extends State<VDonatePage> {
 
   Future<void> _fetchDropdownValues() async {
     var url = Uri.parse(FeedFoodStrings.dropdown);
-    var response = await http.get(url);
-    if (response.statusCode == 200) {
-      var jsonResponse = json.decode(response.body);
-      setState(() {
-        _dropdownValues = List<String>.from(jsonResponse);
-      });
-    } else {
-      log('Failed to load dropdown values');
+    try {
+      var response = await http.get(url);
+      if (response.statusCode == 200) {
+        List<dynamic> jsonResponse = json.decode(response.body);
+        setState(() {
+          _dropdownValues = jsonResponse.map((item) {
+            return {
+              "id": item['foodId'], // Capture both id and details
+              "details": item['foodDetails'],
+            };
+          }).toList();
+        });
+      } else {
+        log('Failed to load dropdown values');
+      }
+    } catch (e) {
+      log(e.toString());
     }
   }
 
@@ -44,7 +54,7 @@ class _VDonatePageState extends State<VDonatePage> {
         border: Border.all(color: Colors.deepPurple, width: 2),
       ),
       child: DropdownButtonHideUnderline(
-        child: DropdownButton<String>(
+        child: DropdownButton<Map<String, dynamic>>(
           value: _selectedValue,
           hint: const Text('Select Package'),
           isExpanded: true,
@@ -55,15 +65,53 @@ class _VDonatePageState extends State<VDonatePage> {
               _selectedValue = newValue;
             });
           },
-          items: _dropdownValues.map((String value) {
-            return DropdownMenuItem<String>(
-              value: value,
-              child: Text(value),
+          items: _dropdownValues.map((Map<String, dynamic> item) {
+            return DropdownMenuItem<Map<String, dynamic>>(
+              value: item,
+              child: Text(item["details"]), // Displaying the food details
             );
           }).toList(),
         ),
       ),
     );
+  }
+
+  Future<void> sendPostRequest() async {
+    if (_selectedValue == null) {
+      print('No food package selected.');
+      return; // Optionally, show an alert/dialog that no option was selected
+    }
+    String foodId = _selectedValue!["id"]; // Extract just the ID
+
+    String apiURL = FeedFoodStrings.volunteer_request;
+
+    try {
+      final response = await http.post(
+        Uri.parse(apiURL),
+        body: {
+          'volunteerId':
+              UserAccountNo, // Assuming UserAccountNo is a global variable containing the user's account number
+          'foodId': foodId, // The selected food package ID (only the ID)
+        },
+      );
+
+      if (response.statusCode == 200) {
+        var jsonResponse = json.decode(response.body);
+        if (jsonResponse['success']) {
+          print('Data inserted successfully');
+          // Handle successful response
+        } else {
+          print('Failed to insert data');
+          // Handle failure response
+        }
+      } else {
+        print('Failed to insert data. Status code: ${response.statusCode}');
+        // Handle HTTP error response
+      }
+    } catch (e) {
+      print(e.toString());
+      // Handle network/error exceptions
+    }
   }
 
   @override
@@ -91,7 +139,7 @@ class _VDonatePageState extends State<VDonatePage> {
               const SizedBox(height: 40),
               ElevatedButton(
                 onPressed: () {
-                  // Submit donation package
+                  sendPostRequest();
                 },
                 style: ElevatedButton.styleFrom(
                   primary: Colors.deepPurple,
