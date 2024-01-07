@@ -9,14 +9,14 @@ import 'package:http/http.dart' as http;
 
 import '../../utils/strings.dart';
 
-class VHomePage extends StatefulWidget {
-  const VHomePage({super.key});
+class AHomePage extends StatefulWidget {
+  const AHomePage({super.key});
 
   @override
-  State<VHomePage> createState() => _VHomePageState();
+  State<AHomePage> createState() => _AHomePageState();
 }
 
-class _VHomePageState extends State<VHomePage> {
+class _AHomePageState extends State<AHomePage> {
   @override
   void initState() {
     // TODO: implement initState

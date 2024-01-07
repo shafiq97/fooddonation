@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../../utils/globals.dart';
@@ -15,21 +14,14 @@ class NProfile extends StatefulWidget {
 
 class _NProfileState extends State<NProfile> {
   String? name;
-
   String? email;
-
   String? address;
-
   String? phoneNo;
-
   bool data = false;
 
   @override
   void initState() {
-    // TODO: implement initState
-
     userProfile();
-
     super.initState();
   }
 
@@ -39,26 +31,20 @@ class _NProfileState extends State<NProfile> {
     try {
       http.Response res =
           await http.post(Uri.parse(uri), body: {'accountNo': UserAccountNo});
-
       var response = jsonDecode(res.body);
+
       setState(() {
-        if (response['ngoName'] != null) {
-          name = response['ngoName'];
+        if (response['fname'] != null) {
+          name = response['fname'] + " " + response['lname'];
         }
-
-        if (response['ngoAddress'] == null) {
-          address = null;
-        } else {
-          address = response['ngoAddress'] + " " + response['ngoPincode'];
-        }
-
-        email = response['ngoEmail'] ?? '';
-        phoneNo = response['ngoPhoneNo'] ?? '';
-
+        address = response['address'] != null
+            ? response['address'] + " " + response['pincode']
+            : null;
+        email = response['email'] ?? '';
+        phoneNo = response['phone'] ?? '';
         data = true;
       });
     } catch (e) {
-      // print(e);
       return false;
     }
   }
@@ -68,113 +54,71 @@ class _NProfileState extends State<NProfile> {
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
-        title: Container(
-          alignment: Alignment.centerLeft,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              Text(
-                "Profile",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                ),
-              ),
-            ],
+        title: const Text(
+          "Profile",
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+            fontSize: 18,
           ),
         ),
+        backgroundColor: Colors.white,
       ),
-      body: data == false
-          ? const Center(
-              child: CircularProgressIndicator(),
-            )
+      body: !data
+          ? const Center(child: CircularProgressIndicator())
           : SingleChildScrollView(
               child: Container(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(16.0),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const SizedBox(
-                      height: 150,
-                      width: 115,
-                      child: SizedBox(
-                        height: 115,
-                        width: 115,
-                        child: CircleAvatar(
-                          backgroundImage:
-                              AssetImage("assets/images/ngo_profile.png"),
+                    CircleAvatar(
+                      radius: 60,
+                      backgroundImage: AssetImage(
+                          "assets/images/ngo_profile.png"), // Replace with your asset image
+                    ),
+                    const SizedBox(height: 20),
+                    Text(name ?? "NGO Name",
+                        style: Theme.of(context).textTheme.headline6),
+                    const SizedBox(height: 10),
+                    Divider(),
+                    ListTile(
+                      leading: Icon(Icons.account_circle,
+                          color: Theme.of(context).primaryColor),
+                      title: Text(name ?? "NGO Name"),
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.email,
+                          color: Theme.of(context).primaryColor),
+                      title: Text(email ?? "Email Address"),
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.phone,
+                          color: Theme.of(context).primaryColor),
+                      title: Text(phoneNo ?? "Phone Number"),
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.location_on,
+                          color: Theme.of(context).primaryColor),
+                      title: Text(address ?? "Address"),
+                    ),
+                    const SizedBox(height: 20),
+                    ElevatedButton(
+                      onPressed: () {
+                        showDialog(
+                            context: context,
+                            builder: (context) =>
+                                MyDialogue().logotDialogue(context));
+                      },
+                      style: ElevatedButton.styleFrom(primary: Colors.red),
+                      child: const Text(
+                        'Logout',
+                        style: TextStyle(
+                          fontSize: 18, // Specify the font size if you want
+                          color: Colors.white, // Setting text color to white
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(0.0),
-                      child: Column(
-                        children: [
-                          Text(name ?? ""),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          const Divider(),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(4.0),
-                            child: Column(
-                              children: [
-                                ListTile(
-                                  leading: const Text(
-                                    "NGO Name: ",
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                  trailing: Text(name ?? ""),
-                                ),
-                                ListTile(
-                                  leading: const Text(
-                                    "Email: ",
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                  trailing: Text(email ?? ""),
-                                ),
-                                ListTile(
-                                  leading: const Text(
-                                    "Phone No: ",
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                  trailing: Text("+60 $phoneNo"),
-                                ),
-                                ListTile(
-                                  leading: const Text(
-                                    "Address: ",
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                  trailing: Text(address ?? ""),
-                                ),
-                                const SizedBox(
-                                  height: 20,
-                                ),
-                                TextButton(
-                                    onPressed: (() {
-                                      showDialog(
-                                          context: context,
-                                          builder: ((context) => MyDialogue()
-                                              .logotDialogue(context)));
-                                    }),
-                                    child: const Text(
-                                      "Logout",
-                                      style: TextStyle(
-                                          fontSize: 18, color: Colors.red),
-                                    ))
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
+                    )
                   ],
                 ),
               ),

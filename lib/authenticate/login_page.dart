@@ -32,6 +32,9 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        // backgroundColor:
+        //     Color(0xffd3f2db), // Set the background color to green here
+
         body: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             child: Form(
@@ -53,7 +56,7 @@ class _LoginPageState extends State<LoginPage> {
                     style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.w800,
-                        color: Colors.deepPurple[400]),
+                        color: Colors.green[500]),
                   ),
                   const SizedBox(
                     height: 10,
@@ -87,12 +90,17 @@ class _LoginPageState extends State<LoginPage> {
                               await authenticate(context);
                             }),
                             // ignore: sort_child_properties_last
-                            child: const Text(
+                            child: Text(
                               "Login",
-                              style: TextStyle(fontSize: 24),
+                              style: TextStyle(
+                                fontSize: 24,
+                                color:
+                                    Colors.white, // Set the text color to white
+                              ),
                             ),
+
                             style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.deepPurple[400],
+                                backgroundColor: Colors.green[500],
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(5),
                                 )),
@@ -159,25 +167,6 @@ class _LoginPageState extends State<LoginPage> {
           // ignore: use_build_context_synchronously
           Navigator.pushNamedAndRemoveUntil(
               context, FeedFoodRoutes().vMainRoute, (r) => false);
-        }
-        if (response['success'] == true && response['type'] == 'admin') {
-          final SharedPreferences sharedPreferences =
-              await SharedPreferences.getInstance();
-          // print(response['username']);
-          sharedPreferences.setString("accountNo", response['accountNo']);
-          sharedPreferences.setString("type", response['type']);
-          sharedPreferences.setString("username", response['username']);
-
-          // Setting Globals
-          UserUsername = response['username'];
-          UserAccountNo = response['accountNo'];
-          UserType = response['type'];
-
-          // ignore: use_build_context_synchronously
-          Navigator.of(context).pop();
-          // ignore: use_build_context_synchronously
-          Navigator.pushNamedAndRemoveUntil(
-              context, FeedFoodRoutes().aMainRoute, (r) => false);
         } else if (response['success'] == true && response['type'] == 'ngo') {
           final SharedPreferences sharedPreferences =
               await SharedPreferences.getInstance();

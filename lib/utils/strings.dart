@@ -28,7 +28,7 @@ class FeedFoodStrings {
 
   static const volunteer_stat_profile_url = "$url/app/volunteer/stat.php";
 
-  // NGO Urls
+  // NGO 
   static const ngo_food_request_url = "$url/app/ngo/food_request.php";
   static const ngo_food_pending_url = "$url/app/ngo/food_pending.php";
   static const ngo_food_complete_url = "$url/app/ngo/food_complete.php";

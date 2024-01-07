@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:feed_food/ngo/models/n_home_model.dart';
 import 'package:feed_food/utils/globals.dart';
 import 'package:flutter/material.dart';
@@ -24,13 +23,11 @@ class _NHomePageState extends State<NHomePage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     getFoodRequest();
     super.initState();
   }
 
-  getFoodRequest() async {
-    // URL for the news API endpoint
+  Future<void> getFoodRequest() async {
     var url = FeedFoodStrings.ngo_food_request_url;
     var url2 = FeedFoodStrings.ngo_stat_url;
 
@@ -39,37 +36,33 @@ class _NHomePageState extends State<NHomePage> {
           await http.post(Uri.parse(url2), body: {"getStat": UserAccountNo});
 
       if (response.statusCode == 200) {
-        // Decode the JSON data from the response
         var data = jsonDecode(response.body);
-        // Return the list of articles from the API
-        newStat = data['new'].toString();
-        pendingStat = data['pending'].toString();
-        completedStat = data['completed'].toString();
-      } else {
-        // If the response was not successful, throw an error
+        setState(() {
+          newStat = data['new'].toString();
+          pendingStat = data['pending'].toString();
+          completedStat = data['completed'].toString();
+        });
       }
-    } catch (e) {}
+    } catch (e) {
+      print("Error fetching statistics: $e");
+    }
 
     try {
-      // Make a GET request to the API endpoint
       var response = await http.post(Uri.parse(url));
 
       if (response.statusCode == 200) {
-        // Decode the JSON data from the response
         var data = jsonDecode(response.body);
-        // Return the list of articles from the API
         var productsData = data['request'];
 
-        if (productsData != false) {
-          setState(() {
+        setState(() {
+          if (productsData != false) {
             foodRequests = productsData;
-          });
-        } else {}
-      } else {
-        // If the response was not successful, throw an error
+          }
+        });
       }
-      setState(() {});
-    } catch (e) {}
+    } catch (e) {
+      print("Error fetching food requests: $e");
+    }
   }
 
   @override
@@ -77,6 +70,7 @@ class _NHomePageState extends State<NHomePage> {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
         statusBarColor: Color.fromARGB(255, 155, 110, 246),
         statusBarBrightness: Brightness.light));
+
     return Scaffold(
       appBar: AppBar(
         flexibleSpace: Container(
@@ -96,124 +90,123 @@ class _NHomePageState extends State<NHomePage> {
         automaticallyImplyLeading: false,
         elevation: 0,
       ),
-      body: SingleChildScrollView(
+      body: RefreshIndicator(
+        onRefresh: getFoodRequest,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              buildHeaderSection(),
+              buildFoodRequestSection(),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget buildHeaderSection() {
+    return Container(
+      height: 250,
+      width: double.infinity,
+      decoration: const BoxDecoration(
+          gradient: LinearGradient(
+        colors: [
+          Color.fromARGB(255, 155, 110, 246),
+          Color.fromARGB(255, 116, 182, 247)
+        ],
+      )),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
         child: Column(
-          children: [
-            Container(
-              height: 250,
-              width: 800,
-              decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                colors: [
-                  Color.fromARGB(255, 155, 110, 246),
-                  Color.fromARGB(255, 116, 182, 247)
-                ],
-              )),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    const SizedBox(
-                      height: 2,
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const Text(
-                      "Request Status",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          decoration: TextDecoration.underline),
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        ReqCards(title1: newStat!, title2: "New"),
-                        ReqCards(title1: pendingStat!, title2: "Pendding"),
-                        ReqCards(title1: completedStat!, title2: "Completed"),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            const SizedBox(height: 5),
+            const Text(
+              "Request Status",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  decoration: TextDecoration.underline),
             ),
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(13),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const Text(
-                      "New Request",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    // create card listview.builder here
-                    foodRequests.isEmpty
-                        ? Center(
-                            child: CircularProgressIndicator(),
-                          )
-                        : ListView.builder(
-                            shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
-                            itemCount: foodRequests.length,
-                            itemBuilder: ((context, index) {
-                              var foodRequest = foodRequests[index];
-                              return Container(
-                                margin: EdgeInsets.symmetric(vertical: 10.0),
-                                padding: EdgeInsets.all(10.0),
-                                decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.grey),
-                                  borderRadius: BorderRadius.circular(10.0),
-                                ),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "ID: ${foodRequest['id']}",
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    Text(
-                                        "Food Details: ${foodRequest['food_details']}"),
-                                    Text(
-                                        "Food Quantity: ${foodRequest['food_quantity']}"),
-                                    Text(
-                                        "Cooking Time: ${foodRequest['cooking_time']}"),
-                                    // Add more fields as needed
-                                  ],
-                                ),
-                              );
-                            }),
-                          ),
-                  ],
-                ),
-              ),
+            const SizedBox(height: 30),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                ReqCards(title1: newStat!, title2: "New"),
+                ReqCards(title1: pendingStat!, title2: "Pending"),
+                ReqCards(title1: completedStat!, title2: "Completed"),
+              ],
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget buildFoodRequestSection() {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(13),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 2,
+            blurRadius: 7,
+            offset: Offset(0, 3),
+          ),
+        ],
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              "All Request",
+              style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18),
+            ),
+            const SizedBox(height: 20),
+            foodRequests.isEmpty
+                ? const Center(child: CircularProgressIndicator())
+                : ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: foodRequests.length,
+                    itemBuilder: (context, index) {
+                      var foodRequest = foodRequests[index];
+                      return buildFoodRequestItem(foodRequest);
+                    },
+                  ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildFoodRequestItem(dynamic foodRequest) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 10.0),
+      padding: const EdgeInsets.all(10.0),
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.green),
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "ID: ${foodRequest['id']}",
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          ),
+          Text("Food Details: ${foodRequest['food_details']}"),
+          Text("Food Quantity: ${foodRequest['food_quantity']}"),
+          Text("Cooking Time: ${foodRequest['cooking_time']}"),
+        ],
       ),
     );
   }

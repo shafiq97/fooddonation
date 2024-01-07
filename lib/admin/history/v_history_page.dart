@@ -7,14 +7,14 @@ import 'package:feed_food/utils/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class VHistory extends StatefulWidget {
-  const VHistory({super.key});
+class AHistory extends StatefulWidget {
+  const AHistory({super.key});
 
   @override
-  State<VHistory> createState() => _VHistoryState();
+  State<AHistory> createState() => _AHistoryState();
 }
 
-class _VHistoryState extends State<VHistory> {
+class _AHistoryState extends State<AHistory> {
   List<String> randomImages = [
     "assets/images/nHome1.png",
     "assets/images/nHome2.png",

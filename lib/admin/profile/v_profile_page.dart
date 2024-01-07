@@ -9,14 +9,14 @@ import 'package:flutter/services.dart';
 import '../../utils/strings.dart';
 import 'package:http/http.dart' as http;
 
-class VProfilePage extends StatefulWidget {
-  const VProfilePage({super.key});
+class AProfilePage extends StatefulWidget {
+  const AProfilePage({super.key});
 
   @override
-  State<VProfilePage> createState() => _VProfilePageState();
+  State<AProfilePage> createState() => _AProfilePageState();
 }
 
-class _VProfilePageState extends State<VProfilePage> {
+class _AProfilePageState extends State<AProfilePage> {
   String? name;
   String? email;
   String? address;

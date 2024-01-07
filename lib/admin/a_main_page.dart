@@ -1,7 +1,7 @@
-import 'package:feed_food/volunteer/donate/v_donate_page.dart';
-import 'package:feed_food/volunteer/history/v_history_page.dart';
-import 'package:feed_food/volunteer/home/v_home_page.dart';
-import 'package:feed_food/volunteer/profile/v_profile_page.dart';
+import 'package:feed_food/admin/donate/v_donate_page.dart';
+import 'package:feed_food/admin/history/v_history_page.dart';
+import 'package:feed_food/admin/home/v_home_page.dart';
+import 'package:feed_food/admin/profile/v_profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
@@ -15,10 +15,10 @@ class AMainPage extends StatefulWidget {
 class _VHomePageState extends State<AMainPage> {
   var _currentIndex = 0;
   List pages = [
-    const VHomePage(),
-    const VDonatePage(),
-    const VHistory(),
-    const VProfilePage(),
+    const AHomePage(),
+    const ADonatePage(),
+    const AHistory(),
+    const AProfilePage(),
   ];
 
   @override

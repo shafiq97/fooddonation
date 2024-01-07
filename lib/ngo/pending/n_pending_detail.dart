@@ -1,6 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-//Author : Prachi Nathjogi
-//Author : Digambar Chaudhari
+// ignore_for_file: public_member_api_docs, sort_constructors_first, use_build_context_synchronously
 
 import 'dart:convert';
 
@@ -72,13 +70,13 @@ class _NPendingDetailState extends State<NPendingDetail> {
         status = "1";
       } else if (response != null) {
         setState(() {
-          title = response['FoodDetails'];
+          title = response['food_details'];
           fname = response['fname'];
           name = "${response['fname']} ${response['lname']}";
-          cookingTime = response['CookingTime'];
-          quantity = response['FoodQuantity'];
-          accountNo = response['SenderAccountNo'];
-          address = "${response['Address']} , ${response['ZipCode']}";
+          cookingTime = response['cooking_time'];
+          quantity = response['food_quantity'];
+          accountNo = response['sender_account_no'];
+          address = "${response['address']} , ${response['zip_code']}";
           lat = response['latitude'];
           long = response['longitude'];
           mobileNo = response['phone'];
@@ -191,7 +189,7 @@ class _NPendingDetailState extends State<NPendingDetail> {
                     )),
                 child: const Text(
                   "Completed",
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(fontSize: 20, color: Colors.white),
                 ),
               ),
             ),

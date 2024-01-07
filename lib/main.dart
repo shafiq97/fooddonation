@@ -18,7 +18,6 @@ import 'package:feed_food/authenticate/set_password.dart';
 import 'package:feed_food/intro/splash_screen.dart';
 import 'package:feed_food/intro/walkthrough.dart';
 import 'package:feed_food/intro/welcome_page.dart';
-// ignore: unused_import
 import 'package:feed_food/ngo/home/n_home_page.dart';
 import 'package:feed_food/ngo/n_main_page.dart';
 import 'package:feed_food/utils/routes.dart';
@@ -102,6 +101,7 @@ class MyApp extends StatelessWidget {
         FeedFoodRoutes().SetPass: (context) => const SetPass(),
         FeedFoodRoutes().nMainRoute: (context) => const NMain(),
         FeedFoodRoutes().aMainRoute: (context) => const AMainPage(),
+        FeedFoodRoutes().vMainRoute: (context) => const VMainPage(),
         FeedFoodRoutes().nMainRoute: (context) => const NMain(),
         FeedFoodRoutes().vHistory: (context) => const VHistory(),
         FeedFoodRoutes().vEditProfile: (context) => VEditProfile(),

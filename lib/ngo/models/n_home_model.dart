@@ -78,17 +78,18 @@ class NgoFoodRequestModel {
 
   factory NgoFoodRequestModel.fromMap(Map<String, dynamic> map) {
     return NgoFoodRequestModel(
-      map['id'] as String,
-      map['SenderAccountNo'] as String,
-      map['FoodDetails'] as String,
-      map['FoodQuantity'] as String,
-      map['CookingTime'] as String,
-      map['Address'] as String,
-      map['ZipCode'] as String,
-      map['Status'] as String,
-      map['CurrentTime'] as String,
-      map['longitude'] as String,
-      map['latitude'] as String,
+      map['id'].toString(), // Converting integer ID to String
+      map['sender_account_no'] ?? '', // using actual keys from the map
+      map['food_details'] ?? '',
+      map['food_quantity'] ?? '',
+      map['cooking_time'] ?? '',
+      map['address'] ?? '',
+      map['zip_code'] ?? '',
+      map['status'] ?? '',
+      map['created_at'] ??
+          '', // Assuming 'CurrentTime' corresponds to 'created_at'
+      map['longitude'] ?? '',
+      map['latitude'] ?? '',
     );
   }
 
