@@ -47,7 +47,7 @@ dependencies:
   flutter_inner_drawer: ^1.0.0+1
   card_swiper : ^3.0.1
   background_app_bar: ^2.0.1
-  intl: ^0.19.0
+  intl: ^0.17.0
   flutter_web_browser: ^0.17.1
   flutter_native_splash: ^2.2.18
   location: ^5.0.3
@@ -58,6 +58,8 @@ dependencies:
   flip_card: ^0.7.0
   patterns_canvas: ^0.4.0
   flutter_launcher_icons: "^0.13.1"
+  mailer: ^5.0.1
+
 
 flutter_icons:
   android: "launcher_icon" 

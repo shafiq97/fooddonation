@@ -66,20 +66,21 @@ class FoodPostHistoryModel {
   final String DonorName;
   final String ImgUrl;
   final String DonationId;
+  final String DonorEmail;
 
   FoodPostHistoryModel(
-    this.FoodDetails,
-    this.FoodQuantity,
-    this.CookingTime,
-    this.Address,
-    this.ZipCode,
-    this.Status,
-    this.CurrentTime,
-    this.Package,
-    this.DonorName,
-    this.ImgUrl,
-    this.DonationId,
-  );
+      this.FoodDetails,
+      this.FoodQuantity,
+      this.CookingTime,
+      this.Address,
+      this.ZipCode,
+      this.Status,
+      this.CurrentTime,
+      this.Package,
+      this.DonorName,
+      this.ImgUrl,
+      this.DonationId,
+      this.DonorEmail);
 
   FoodPostHistoryModel copyWith({
     String? FoodDetails,
@@ -93,20 +94,21 @@ class FoodPostHistoryModel {
     String? DonorName,
     String? ImgUrl,
     String? DonationId,
+    String? DonorEmail,
   }) {
     return FoodPostHistoryModel(
-      FoodDetails ?? this.FoodDetails,
-      FoodQuantity ?? this.FoodQuantity,
-      CookingTime ?? this.CookingTime,
-      Address ?? this.Address,
-      ZipCode ?? this.ZipCode,
-      Status ?? this.Status,
-      CurrentTime ?? this.CurrentTime,
-      Package ?? this.Package,
-      DonorName ?? this.DonorName,
-      ImgUrl ?? this.ImgUrl,
-      DonationId ?? this.DonationId,
-    );
+        FoodDetails ?? this.FoodDetails,
+        FoodQuantity ?? this.FoodQuantity,
+        CookingTime ?? this.CookingTime,
+        Address ?? this.Address,
+        ZipCode ?? this.ZipCode,
+        Status ?? this.Status,
+        CurrentTime ?? this.CurrentTime,
+        Package ?? this.Package,
+        DonorName ?? this.DonorName,
+        ImgUrl ?? this.ImgUrl,
+        DonationId ?? this.DonationId,
+        DonorEmail ?? this.DonorEmail);
   }
 
   Map<String, dynamic> toMap() {
@@ -121,23 +123,24 @@ class FoodPostHistoryModel {
       'DonorName': DonorName,
       'ImgUrl': ImgUrl,
       'DonationId': DonationId,
+      'DonorEmail': DonorEmail
     };
   }
 
   factory FoodPostHistoryModel.fromMap(Map<String, dynamic> map) {
     return FoodPostHistoryModel(
-      map['FoodDetails'] as String,
-      map['FoodQuantity'] as String,
-      map['CookingTime'] as String,
-      map['Address'] as String,
-      map['ZipCode'] as String,
-      map['Status'] as String,
-      map['CurrentTime'] as String,
-      map['Package'] as String,
-      map['DonorName'] as String,
-      map['ImgUrl'] as String,
-      map['DonationId'] as String,
-    );
+        map['FoodDetails'] as String,
+        map['FoodQuantity'] as String,
+        map['CookingTime'] as String,
+        map['Address'] as String,
+        map['ZipCode'] as String,
+        map['Status'] as String,
+        map['CurrentTime'] as String,
+        map['Package'] as String,
+        map['DonorName'] as String,
+        map['ImgUrl'] as String,
+        map['DonationId'] as String,
+        map['DonorEmail'] as String);
   }
 
   String toJson() => json.encode(toMap());
@@ -164,6 +167,7 @@ class FoodPostHistoryModel {
         other.Package == Package &&
         other.ImgUrl == ImgUrl &&
         other.DonationId == DonationId &&
+        other.DonorEmail == DonorEmail &&
         other.DonorName == DonorName;
   }
 
@@ -179,6 +183,7 @@ class FoodPostHistoryModel {
         Package.hashCode ^
         ImgUrl.hashCode ^
         DonationId.hashCode ^
+        DonorEmail.hashCode ^
         DonorName.hashCode;
   }
 }

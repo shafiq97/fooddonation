@@ -7,7 +7,7 @@ import 'package:feed_food/volunteer/donate/get_location.dart';
 import 'package:feed_food/widgets/text_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart' as intl;
-
+import 'package:intl/intl.dart';
 import '../../utils/routes.dart';
 
 class VDonatePage extends StatefulWidget {
@@ -115,9 +115,8 @@ class _VDonatePageState extends State<VDonatePage> {
                             Row(
                               children: [
                                 Text(
-                                  intl.NumberFormat.decimalPatternDigits(
-                                    decimalDigits: 0,
-                                  ).format(maxValue),
+                                  NumberFormat.decimalPattern().format(
+                                      maxValue), // This formats the number using the default locale
                                   style:
                                       Theme.of(context).textTheme.titleMedium,
                                 ),

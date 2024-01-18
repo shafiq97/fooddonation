@@ -4,6 +4,8 @@ import 'package:feed_food/models/food_post_model.dart';
 import 'package:feed_food/utils/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:mailer/mailer.dart';
+import 'package:mailer/smtp_server.dart';
 
 class UpdateImageModal extends StatefulWidget {
   final FoodPostHistoryModel foodPostHistory;
@@ -61,6 +63,9 @@ class _UpdateImageModalState extends State<UpdateImageModal> {
       );
 
       if (response.statusCode == 200) {
+        await _sendEmail(
+            widget.foodPostHistory.DonorEmail, _imageController.text);
+
         // Handle successful update
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
@@ -73,6 +78,31 @@ class _UpdateImageModalState extends State<UpdateImageModal> {
       }
     } catch (e) {
       // Handle any errors here
+    }
+  }
+
+  Future<void> _sendEmail(String recipient, String imageUrl) async {
+    // Configure the SMTP server and create a message
+    String username = 'muhammadshafiq457@gmail.com';
+    String password = 'jkztkdunuictnvwl';
+
+    final smtpServer = gmail(username, password);
+    final message = Message()
+      ..from = Address(username, 'GIVE`M')
+      ..recipients.add(recipient)
+      ..subject =
+          'This is to inform ${widget.foodPostHistory.FoodDetails} has received your donation at ${DateTime.now()}'
+      ..text =
+          'The image has been updated successfully. New image URL: $imageUrl';
+
+    try {
+      final sendReport = await send(message, smtpServer);
+      print('Message sent: ' + sendReport.toString());
+    } on MailerException catch (e) {
+      print('Message not sent.');
+      for (var p in e.problems) {
+        print('Problem: ${p.code}: ${p.msg}');
+      }
     }
   }
 }
