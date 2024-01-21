@@ -8,9 +8,10 @@ class FeedFoodStrings {
   // web
   // static const url = "http://localhost/feedfood";
   // phone
-  static const url = "http://10.0.2.2/feedfood";
+  static const url = "https://0600-115-164-119-155.ngrok-free.app/feedfood";
 
   static const register_url_volunteer = "$url/app/authentication/register.php";
+  static const send_email = "$url/app/send_email.php";
 
   static const register_url_ngo = "$url/app/authentication/register_ngo.php";
   static const dropdown = "$url/app/package_dropdown.php";
